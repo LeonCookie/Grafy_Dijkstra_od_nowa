@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
 
             TextResoult.text = path?.toString() ?: "Brak sciezki"
-            Log.d("Sciezka", path?.toString() ?: "Brak sciezki")
+
         }
 
 
