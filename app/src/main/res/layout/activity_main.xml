@@ -31,17 +31,18 @@
 
     <TextView
         android:id="@+id/textViewWynik"
-        android:layout_width="207dp"
-        android:layout_height="84dp"
+        android:layout_width="378dp"
+        android:layout_height="188dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Ostatnia wartosc"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627" />
+        app:layout_constraintVertical_bias="0.742" />
 
     <NumberPicker
         android:id="@+id/FirstValue"
@@ -64,20 +65,20 @@
 
     <Button
         android:id="@+id/buttonStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="148dp"
+        android:layout_height="71dp"
         android:background="@color/teal_200"
         android:text="Start"
         android:textColor="#DFD2FA"
         android:textColorHint="#8A4242"
+        android:theme="@style/Theme.Material3.DynamicColors.Light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.467"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewWynik"
-        app:layout_constraintVertical_bias="0.476"
-        tools:ignore="TextContrastCheck"
-        android:theme="@style/Theme.Material3.DynamicColors.Light"/>
+        app:layout_constraintVertical_bias="0.896"
+        tools:ignore="TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
