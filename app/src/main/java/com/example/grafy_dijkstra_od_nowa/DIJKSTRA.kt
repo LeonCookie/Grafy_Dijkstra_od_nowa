@@ -1,54 +1,45 @@
 package com.example.grafy_dijkstra_od_nowa
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
-import org.json.JSONStringer
-import java.util.PriorityQueue
+import java.util.*
 
-data class NodeCost(val n: Int,val c:Int)
+data class Cost(val node: Int, val cost: Int)
 
-class Dijkstra(graph:Graph) : Algorithm(graph) {
+class Dijkstra(graph: Graph) : Algorithm(graph) {
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun pathfind(s: Int, e: Int):Path? {
-
-        // previous node
-        val previous = MutableList(graph.nodeCount) { -1 }
-        // current min cost from source
-        val costs = MutableList(graph.nodeCount) { -1 }
-        // distance to start from start is 0
+        val previous = MutableList(graph.nCount) { -1 }
+        val costs = MutableList(graph.nCount) { -1 }
         costs[s] = 0;
 
-        val queue = PriorityQueue<NodeCost>(compareBy{it.c})
-
-        queue.add(NodeCost(s,0))
+        val queue = PriorityQueue<Cost>(compareBy{ it.cost })
+        queue.add(Cost(s,0))
 
         while (!queue.isEmpty()) {
             val current = queue.remove()
 
-            for ( vertice in graph.adjacencyList[current.n] ){
-                if(current.c + vertice.c > costs[vertice.n] && costs[vertice.n] != -1) continue
+            for (vertex in graph.adjacencyList[current.node] ){
+                if (current.cost + vertex.cost > costs[vertex.node]
+                    && costs[vertex.node] != -1) continue
 
-                costs[vertice.n] = current.c + vertice.c
-                previous[vertice.n] = current.n
-                queue.add(NodeCost(vertice.n,costs[vertice.n]))
-
+                costs[vertex.node] = current.cost + vertex.cost
+                previous[vertex.node] = current.node
+                queue.add(Cost(vertex.node, costs[vertex.node]))
             }
-
         }
 
-        if(previous[e] == -1) return null
-
+        if(previous[e] == -1)
+            return null
 
         var path: MutableList<Int> = mutableListOf()
         var i = e
-        do{
+        do {
             path.add(i)
             i = previous[i]
-        }while(i != s)
-        return Path(path.reversed(),costs[e])
+        } while(i != s)
 
+        return Path(path.reversed(), costs[e])
     }
-
 }
